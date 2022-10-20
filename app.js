@@ -10,14 +10,14 @@ app.use(cors());
 
 
 // routes
-
+const jobRouter = require('./routes/job.route');
 
 
 app.get('/', (req, res) => {
     res.send('Route is working! YAY');
 });
 
-
+app.use('/api/v1/jobs', jobRouter);
 
 
 
