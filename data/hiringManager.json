@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Mezbaul Abedin Persian",
+        "contactNumber": [
+            "01111111111",
+            "02222222222"
+        ],
+        "emergencyContactNumber": "011111111",
+        "imageURL": "https://i.ibb.co/WnFSs9Y/unnamed.webp",
+        "nationalIdImageURL": "https://i.ibb.co/WnFSs9Y/unnamed.webp",
+        "presentAddress": "944 Honduras Street",
+        "permanentAddress": "944 Ghana Street",
+        "userId": "635167d4b239c48f200de89b",
+        "location": "chattogram",
+        "status": "active"
+    },
+
+    {
+        "name": "Jhankar Mahbub",
+        "contactNumber": [
+            "01111111111",
+            "02222222222"
+        ],
+        "emergencyContactNumber": "011111111",
+        "imageURL": "https://i.ibb.co/WnFSs9Y/unnamed.webp",
+        "nationalIdImageURL": "https://i.ibb.co/WnFSs9Y/unnamed.webp",
+        "presentAddress": "944 Honduras Street",
+        "permanentAddress": "944 Ghana Street",
+        "userId": "635167d4b239c48f200de89b",
+        "location": "chattogram",
+        "status": "active"
+    }
+]

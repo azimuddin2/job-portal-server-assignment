@@ -13,14 +13,6 @@ const hiringManagerSchema = mongoose.Schema({
         maxLength: [100, 'Name is too large'],
     },
 
-    email: {
-        type: String,
-        validate: [validator.isEmail, 'Provide a valid Email'],
-        trim: true,
-        lowercase: true,
-        unique: true
-    },
-
     contactNumber: [{
         type: String,
         required: [true, 'Please provide a contact number'],
@@ -31,6 +23,17 @@ const hiringManagerSchema = mongoose.Schema({
             message: 'Please Provide a valid phone number',
         }
     }],
+
+    emergencyContactNumber: {
+        type: String,
+        required: [true, 'Please provide a contact number'],
+        validate: {
+            validator: (value) => {
+                return validator.isMobilePhone(value);
+            },
+            message: 'Please Provide a valid phone number',
+        }
+    },
 
     imageURL: {
         type: String,
@@ -43,22 +46,51 @@ const hiringManagerSchema = mongoose.Schema({
         validate: [validator.isURL, 'Please provide a valid url']
     },
 
+    presentAddress: {
+        type: String,
+        required: [true, 'Please provide your present address']
+    },
+
+    permanentAddress: {
+        type: String,
+        required: [true, 'Please provide your present address']
+    },
+
     userId: {
         type: ObjectId,
         required: true,
         ref: "User"
     },
 
+    location: {
+        type: String,
+        trim: true,
+        required: [true, "Please provide a store name"],
+        lowercase: true,
+        enum: {
+            values: [
+                "dhaka",
+                "chattogram",
+                "rajshahi",
+                "sylhet",
+                "feni",
+                "rangpur",
+                "khulna"
+            ],
+            message: "{VALUE} is not a valid name"
+        }
+    },
+
     status: {
         type: String,
         default: "active",
-        enum: ["active", "block"]
+        enum: ["active", "block"],
     },
 
     role: {
         type: String,
+        default: "hiring-manager",
         enum: ['candidate', 'hiring-manager'],
-        default: "hiringManager"
     }
 
 }, {

@@ -11,6 +11,8 @@ app.use(cors());
 
 // routes
 const jobRouter = require('./routes/job.route');
+const hiringManagerRouter = require('./routes/hiringManager.route');
+const userRouter = require('./routes/user.route');
 
 
 app.get('/', (req, res) => {
@@ -18,6 +20,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/manager/jobs', hiringManagerRouter); 
+app.use('/api/v1/user', userRouter);
 
 
 
