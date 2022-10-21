@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.route('/')
     .post(verifyToken, authorization('admin', 'hiring-manager"'), jobController.createJob)
-    .get(verifyToken, jobController.getAllJobs)
+    .get( jobController.getAllJobs)
 
 
 router.route('/:id/apply')
