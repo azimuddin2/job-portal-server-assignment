@@ -1,129 +1,35 @@
 [
-    {
-      "name": "Full Stack developer",
-      "jobType": "full-time",
-      "salary": 90000,
-      "location": "uttara",
-      "vacancy": 2,
-      "deadline": "2002/12/09",
-      "Skills": [
-        "HTML",
-        "CSS",
-        "Bootstrap",
-        "JavaScript",
-        "React.js",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "Rest-api"
-      ],
-      "hiringManager": "63521023e5e967bff0466c3c", 
-      "companyName": "Programing Hero",
-      "companyDetails": "Programming Hero is one of the best software company",
-      "jobDescription": "We need a Fullstack Developer",
-      "jobResponsibilities": "Dedicated teamwork and punctual",
-      "additionalRequirements": "html, css, javascript",
-      "benefits": "half yearly bonus"
+  {
+    "createdBy": {
+      "email": "azim@text.com",
+      "UserId": "63520ec22752f1ba736effbc"
     },
-    
-    {
-      "name": "Front-end developer",
-      "jobType": "full-time",
-      "salary": 50000,
-      "location": "dhaka",
-      "vacancy": 3,
-      "deadline": "2002/12/09",
-      "Skills": [
-        "HTML",
-        "CSS",
-        "Bootstrap",
-        "Tailwind-css",
-        "JavaScript",
-        "React.js",
-        "React-router",
-        "Firebase",
-        "git"
-        
-      ],
-      "hiringManager": "63521035e5e967bff0466c3e", 
-      "companyName": "Programing Hero",
-      "companyDetails": "Programming Hero is one of the best software company",
-      "jobDescription": "We need a front-end Developer",
-      "jobResponsibilities": "Dedicated teamwork and punctual",
-      "additionalRequirements": "html, css, javascript, react.js",
-      "benefits": "half yearly bonus"
-    },
-
-    {
-      "name": "Back-end developer",
-      "jobType": "full-time",
-      "salary": 60000,
-      "location": "uttara",
-      "vacancy": 2,
-      "deadline": "2002/12/09",
-      "Skills": [
-        "HTML",
-        "CSS",
-        "Bootstrap",
-        "JavaScript",
-        "React.js",
-        "Node.js",
-        "MongoDB"
-      ],
-      "hiringManager": "63521043e5e967bff0466c40", 
-      "companyName": "Programing Hero",
-      "companyDetails": "Programming Hero is one of the best software company",
-      "jobDescription": "We need a Fullstack Developer",
-      "jobResponsibilities": "Dedicated teamwork and punctual",
-      "additionalRequirements": "html, css, javascript",
-      "benefits": "half yearly bonus"
-    },
-    {
-      "name": "Web designer",
-      "jobType": "full-time",
-      "salary": 30000,
-      "location": "uttara",
-      "vacancy": 2,
-      "deadline": "2002/12/09",
-      "Skills": [
-        "HTML",
-        "CSS",
-        "Bootstrap",
-        "JavaScript",
-        "Responsive-design"
-      ],
-      "hiringManager": "63521045e5e967bff0466c42", 
-      "companyName": "Programing Hero",
-      "companyDetails": "Programming Hero is one of the best software company",
-      "jobDescription": "We need a Fullstack Developer",
-      "jobResponsibilities": "Dedicated teamwork and punctual",
-      "additionalRequirements": "html, css, responsive-design",
-      "benefits": "half yearly bonus"
-    },
-    {
-      "name": "Web Developer",
-      "jobType": "full-time",
-      "salary": 70000,
-      "location": "uttara",
-      "vacancy": 2,
-      "deadline": "2002/12/09",
-      "Skills": [
-        "HTML",
-        "CSS",
-        "Bootstrap",
-        "JavaScript",
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "Git",
-        "Rest-api"
-      ],
-      "hiringManager": "6352105ce5e967bff0466c44", 
-      "companyName": "Programing Hero",
-      "companyDetails": "Programming Hero is one of the best software company",
-      "jobDescription": "We need a Fullstack Developer",
-      "jobResponsibilities": "Dedicated teamwork and punctual",
-      "additionalRequirements": "html, css, javascript",
-      "benefits": "half yearly bonus"
-    }
-  ]
+    "jobTitle": "Full Stack developer",
+    "jobType": "full-time",
+    "companyName": "Programing Hero",
+    "location": "uttara",
+    "salary": 90000,
+    "jobDescription": "We need a Fullstack Developer",
+    "Skills": [
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "JavaScript",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Rest-api"
+    ],
+    "appliedBy": [
+      {
+        "name": "Azim Uddin",
+        "email": "azim@text.com",
+        "userId": "63520ec22752f1ba736effbc",
+        "applicationId": "63520ec22752f1ba736effbc",
+        "date": "2022/12/21"
+      }
+    ],
+    "deadline": "2002/12/09"
+  }
+]

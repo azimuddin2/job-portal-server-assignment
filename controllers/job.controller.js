@@ -1,11 +1,11 @@
-const { createJobServices, getAllJobsService, getJobByIdService, updateJobByIdService, applyJobService } = require("../services/job.service");
+const { createJobServices, getAllJobsService, getJobByIdService, updateJobByIdService, applyJobService, createJobService } = require("../services/job.service");
 const { findUserByEmail } = require("../services/user.service");
 
 
 
 exports.createJob = async (req, res, next) => {
     try {
-        const job = await createJobServices(req.body);
+        const job = await createJobService(req.body);
 
         if (!job) {
             return res.status(500).json({

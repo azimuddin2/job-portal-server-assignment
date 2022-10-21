@@ -5,93 +5,92 @@ const date = new Date();
 date.setDate(date.getSeconds() + 1);
 
 
-const jobSchema = mongoose.Schema(
-  {
-    createdBy: {
+const jobSchema = mongoose.Schema({
+  createdBy: {
+    email: {
+      type: String,
+      validate: [validator.isEmail, "Provide a valid Email"],
+      required: [true, "Please provide a Hiring Manager Email"],
+    },
+
+    UserId: {
+      type: ObjectId,
+      ref: "User",
+      required: [true, "Please provide a Hiring Manager id"],
+    },
+  },
+
+  jobTitle: {
+    type: String,
+    required: [true, "Please provide a jobTitle"],
+    trim: true,
+    minLength: [3, "Name must be at least 3 characters."],
+    maxLength: [200, "Name is too large"],
+  },
+
+  jobType: {
+    type: String,
+    required: [true, "Please provide a jobType"],
+    trim: true,
+  },
+
+  companyName: {
+    type: String,
+    required: [true, "Please provide a companyName"],
+  },
+
+  location: {
+    type: String,
+    required: [true, "Please provide a company location"],
+  },
+
+  salary: {
+    type: Number,
+    required: [true, "Please provide a salary"],
+  },
+
+  jobDescription: String,
+
+  Skills: {
+    type: Array,
+    required: [true, "skills is required!"]
+  },
+
+  appliedBy: [
+    {
+      name: String,
+
       email: {
         type: String,
         validate: [validator.isEmail, "Provide a valid Email"],
-        required: [true, "Please provide a Hiring Manager Email"],
       },
 
-      id: {
+      userId: {
         type: ObjectId,
         ref: "User",
-        required: [true, "Please provide a Hiring Manager id"],
+      },
+
+      applicationId: {
+        type: ObjectId,
+        ref: "Application",
+      },
+
+      date: {
+        type: Date,
+        default: new Date(),
       },
     },
+  ],
 
-    jobTitle: {
-      type: String,
-      required: [true, "Please provide a jobTitle"],
-      trim: true,
-      minLength: [3, "Name must be at least 3 characters."],
-      maxLength: [200, "Name is too large"],
-    },
-
-    jobType: {
-      type: String,
-      required: [true, "Please provide a jobType"],
-      trim: true,
-    },
-
-    companyName: {
-      type: String,
-      required: [true, "Please provide a companyName"],
-    },
-
-    location: {
-      type: String,
-      required: [true, "Please provide a company location"],
-    },
-
-    salary: {
-      type: Number,
-      required: [true, "Please provide a salary"],
-    },
-
-    jobDescription: String,
-
-    Skills: {
-      type: Array,
-      required: [true, "skills is required!"]
-    },
-
-    appliedBy: [
-      {
-        name: String,
-
-        email: {
-          type: String,
-          validate: [validator.isEmail, "Provide a valid Email"],
-        },
-
-        id: {
-          type: ObjectId,
-          ref: "User",
-        },
-
-        applicationId: {
-          type: ObjectId,
-          ref: "Application",
-        },
-
-        date: {
-          type: Date,
-          default: new Date(),
-        },
-      },
-    ],
-
-    deadline: {
-      type: Date,
-      required: [true, "Please provide a deadline"],
-      default: date,
-    },
-
-    confirmationToken: String,
-    confirmationTokenExpires: Date,
+  deadline: {
+    type: Date,
+    required: [true, "Please provide a deadline"],
+    default: date,
   },
+
+  confirmationToken: String,
+  confirmationTokenExpires: Date,
+},
   {
     timestamps: true,
   }

@@ -1,21 +1,24 @@
 const express = require('express');
 const jobController = require('../controllers/job.controller');
+const verifyToken = require("../middleware/verifyToken");
+const authorization = require("../middleware/authorization");
+const upload = require("../middleware/upload");
 
 const router = express.Router();
 
 
 router.route('/')
-    .post(jobController.createJob)
-    .get(jobController.getAllJobs)
+    .post(verifyToken, authorization('admin', 'hiring-manager"'), jobController.createJob)
+    .get(verifyToken, jobController.getAllJobs)
 
 
 router.route('/:id/apply')
-    .post(jobController.applyJob)
+    .post(verifyToken, upload.single("resume"), jobController.applyJob)
 
 
 router.route('/:id')
-    .get(jobController.getJobById)
-    .patch(jobController.updateJobById)
+    .get(verifyToken, jobController.getJobById)
+    .patch(verifyToken, authorization('admin', 'hiring-manager"'), jobController.updateJobById)
 
 
 
