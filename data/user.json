@@ -1,0 +1,47 @@
+[
+    {
+        "email": "admin@gmail.com",
+        "password": "Admin123#",
+        "confirmPassword": "Admin123#",
+        "firstName": "Admin",
+        "lastName": "Main",
+        "shippingAddress": "944 osthir street",
+        "imageURL": "https://i.ibb.co/VLt9m15/DSC-0275-01-2.jpg"
+    },
+    {
+        "email": "azim@test.com",
+        "password": "azim12345#A",
+        "confirmPassword": "azim12345#A",
+        "firstName": "Azim",
+        "lastName": "Uddin",
+        "shippingAddress": "944 osthir street",
+        "imageURL": "https://i.ibb.co/VLt9m15/DSC-0275-01-2.jpg"
+    },
+    {
+        "email": "mezbaul@test.com",
+        "password": "mezbaul12345#A",
+        "confirmPassword": "mezbaul12345#A",
+        "firstName": "Mezbaul Abedin",
+        "lastName": "Persian",
+        "shippingAddress": "944 osthir street",
+        "imageURL": "https://i.ibb.co/VLt9m15/DSC-0275-01-2.jpg"
+    },
+    {
+        "email": "jhankar@test.com",
+        "password": "jhankar12345#A",
+        "confirmPassword": "jhankar12345#A",
+        "firstName": "Jhankar",
+        "lastName": "Mahbub",
+        "shippingAddress": "944 osthir street",
+        "imageURL": "https://i.ibb.co/VLt9m15/DSC-0275-01-2.jpg"
+    },
+    {
+        "email": "fahim@test.com",
+        "password": "fahim12345#A",
+        "confirmPassword": "fahim12345#A",
+        "firstName": "Abdullah Al",
+        "lastName": "Fahim",
+        "shippingAddress": "944 osthir street",
+        "imageURL": "https://i.ibb.co/VLt9m15/DSC-0275-01-2.jpg"
+    }
+]

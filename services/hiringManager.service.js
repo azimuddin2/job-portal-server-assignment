@@ -7,11 +7,11 @@ exports.createHiringManagerService = async (data) => {
 }
 
 exports.getAllHiringManagerService = async () => {
-    const hiringManagers = await HiringManager.find({});
+    const hiringManagers = await HiringManager.find({}).populate('userId');
     return hiringManagers;
 }
 
 exports.getHiringManagerByIdService = async (id) => {
-    const hiringManager = await HiringManager.findOne({ _id: id });
+    const hiringManager = await HiringManager.findOne({ _id: id }).populate('userId');
     return hiringManager;
 }

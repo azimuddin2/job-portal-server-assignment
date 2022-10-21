@@ -13,26 +13,10 @@ const hiringManagerSchema = mongoose.Schema({
         maxLength: [100, 'Name is too large'],
     },
 
-    contactNumber: [{
-        type: String,
-        required: [true, 'Please provide a contact number'],
-        validate: {
-            validator: (value) => {
-                return validator.isMobilePhone(value);
-            },
-            message: 'Please Provide a valid phone number',
-        }
-    }],
-
-    emergencyContactNumber: {
-        type: String,
-        required: [true, 'Please provide a contact number'],
-        validate: {
-            validator: (value) => {
-                return validator.isMobilePhone(value);
-            },
-            message: 'Please Provide a valid phone number',
-        }
+    userId: {
+        type: ObjectId,
+        required: true,
+        ref: "User"
     },
 
     imageURL: {
@@ -54,12 +38,6 @@ const hiringManagerSchema = mongoose.Schema({
     permanentAddress: {
         type: String,
         required: [true, 'Please provide your present address']
-    },
-
-    userId: {
-        type: ObjectId,
-        required: true,
-        ref: "User"
     },
 
     location: {
