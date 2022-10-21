@@ -1,8 +1,8 @@
 [
   {
     "createdBy": {
-      "email": "azim@text.com",
-      "UserId": "63520ec22752f1ba736effbc"
+      "email": "admin@gmail.com",
+      "UserId": "63529fc31f3037cfcebc07f9"
     },
     "jobTitle": "Full Stack developer",
     "jobType": "full-time",
@@ -25,7 +25,67 @@
       {
         "name": "Azim Uddin",
         "email": "azim@text.com",
-        "userId": "63520ec22752f1ba736effbc",
+        "userId": "63529fc31f3037cfcebc07f9",
+        "applicationId": "63520ec22752f1ba736effbc",
+        "date": "2022/12/21"
+      }
+    ],
+    "deadline": "2002/12/09"
+  },
+
+  {
+    "createdBy": {
+      "email": "admin@gmail.com",
+      "UserId": "63529fc31f3037cfcebc07f9"
+    },
+    "jobTitle": "Front-end Stack developer",
+    "jobType": "full-time",
+    "companyName": "Programing Hero",
+    "location": "uttara",
+    "salary": 90000,
+    "jobDescription": "We need a Fullstack Developer",
+    "Skills": [
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "JavaScript",
+      "React.js"
+    ],
+    "appliedBy": [
+      {
+        "name": "Azim Uddin",
+        "email": "azim@text.com",
+        "userId": "63529fc31f3037cfcebc07f9",
+        "applicationId": "63520ec22752f1ba736effbc",
+        "date": "2022/12/21"
+      }
+    ],
+    "deadline": "2002/12/09"
+  },
+
+  {
+    "createdBy": {
+      "email": "admin@gmail.com",
+      "UserId": "63529fc31f3037cfcebc07f9"
+    },
+    "jobTitle": "Back-end developer",
+    "jobType": "full-time",
+    "companyName": "Programing Hero",
+    "location": "uttara",
+    "salary": 90000,
+    "jobDescription": "We need a Fullstack Developer",
+    "Skills": [
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Rest-api"
+    ],
+    "appliedBy": [
+      {
+        "name": "Azim Uddin",
+        "email": "azim@text.com",
+        "userId": "63529fc31f3037cfcebc07f9",
         "applicationId": "63520ec22752f1ba736effbc",
         "date": "2022/12/21"
       }

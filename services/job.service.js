@@ -16,7 +16,8 @@ exports.getAllJobsService = async (filters, queries) => {
 
 
 exports.getJobByIdService = async (id) => {
-    return await Job.findOne({_id: id}).populate("createdBy.id");
+    const job = await Job.findOne({_id: id}).populate('createdBy').populate('createdBy.userId') 
+    return job;
 };
 
 

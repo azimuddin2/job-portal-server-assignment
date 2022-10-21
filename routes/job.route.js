@@ -17,7 +17,7 @@ router.route('/:id/apply')
 
 
 router.route('/:id')
-    .get(verifyToken, jobController.getJobById)
+    .get(jobController.getJobById)
     .patch(verifyToken, authorization('admin', 'hiring-manager"'), jobController.updateJobById)
 
 

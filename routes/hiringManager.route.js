@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router.route('/')
-    .get(verifyToken, hiringManagerController.getAllJobsHiringManager)
+    .get( hiringManagerController.getAllJobsHiringManager)
 
 
 router.route('/:id')
