@@ -1,4 +1,4 @@
-const { signupService, loginUserByEmail } = require("../services/user.service");
+const { signupService, loginUserByEmail, findUserByEmail } = require("../services/user.service");
 const { generateToken } = require("../utils/token");
 
 exports.signup = async (req, res) => {
@@ -78,21 +78,21 @@ exports.login = async (req, res) => {
 };
 
 
-exports.getMe = async(req, res) => {
+exports.getMe = async (req, res, next) => {
     try {
+        const { email } = req.user || {};
+        const user = await findUserByEmail(email);
+        const { password: pass, ...others } = user.toObject();
 
-        const user = await loginUserByEmail(req.user?.email);
-        
         res.status(200).json({
             status: "success",
-            message: "Successfully get the user information",
-            data: user
-        })
-
+            user: others,
+        });
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             status: "fail",
-            error: error.message
-        })
+            message: "Couldn't get User",
+            error: error.message,
+        });
     }
 };

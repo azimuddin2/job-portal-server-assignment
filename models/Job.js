@@ -1,107 +1,100 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
+const validator = require("validator");
+const date = new Date();
+date.setDate(date.getSeconds() + 1);
 
 
-const jobSchema = mongoose.Schema({
-    name: {
+const jobSchema = mongoose.Schema(
+  {
+    createdBy: {
+      email: {
         type: String,
-        required: [true, "job name is required!"],
-        maxLength: [100, "job name field is too large!"],
-        trim: true
-    },
+        validate: [validator.isEmail, "Provide a valid Email"],
+        required: [true, "Please provide a Hiring Manager Email"],
+      },
 
-    hiringManager: {
+      id: {
         type: ObjectId,
-        required: [true, "Hiring manager id is required!"],
-        ref: "HiringManager"
+        ref: "User",
+        required: [true, "Please provide a Hiring Manager id"],
+      },
     },
 
-    companyName: {
-        type: String,
-        required: [true, "company is required!"],
-        maxLength: [100, "company name is too large!"]
-    },
-
-    companyDetails: {
-        type: String,
-        required: [true, "company details field is required!"],
-        maxLength: [1000, "company details field is too large!"],
-        trim: true
-    },
-
-    jobDescription: {
-        type: String,
-        required: [true, "job description field is required!"],
-        maxLength: [1000, "job description field is too large!"],
-        trim: true
-    },
-
-    jobResponsibilities: {
-        type: String,
-        required: [true, "job responsibilities field is required!"],
-        maxLength: [1000, "job responsibilities field is too large!"],
-        trim: true
-    },
-
-    additionalRequirements: {
-        type: String,
-        required: [true, "additional requirements is required!"]
-    },
-
-    salary: {
-        required: true,
-        type: Number
-    },
-
-    location: {
-        required: [true, "job location is required!"],
-        type: String,
-        lowercase: true
+    jobTitle: {
+      type: String,
+      required: [true, "Please provide a jobTitle"],
+      trim: true,
+      minLength: [3, "Name must be at least 3 characters."],
+      maxLength: [200, "Name is too large"],
     },
 
     jobType: {
-        type: String,
-        required: [true, "job type is required"],
-        enum: {
-            values: ["part-time", "full-time", "internship"],
-            message: "{VALUE} can't be a job type!"
-        }
+      type: String,
+      required: [true, "Please provide a jobType"],
+      trim: true,
     },
 
-    vacancy: {
-        type: Number,
-        required: [true, "number of vacancy is required!"]
+    companyName: {
+      type: String,
+      required: [true, "Please provide a companyName"],
     },
 
-    benefits: {
-        type: String,
-        required: [true, "benefits is required!"]
+    location: {
+      type: String,
+      required: [true, "Please provide a company location"],
     },
 
-    candidate:[{
-        type: ObjectId,
-        ref: "Candidate"
-    }],
+    salary: {
+      type: Number,
+      required: [true, "Please provide a salary"],
+    },
 
-    application:[{
-        type: ObjectId,
-        ref: "Application"
-    }],
+    jobDescription: String,
 
     Skills: {
-        type: Array,
-        required: [true, "skills is required!"]
+      type: Array,
+      required: [true, "skills is required!"]
     },
 
-    deadline: {
-        type: Date,
-        required: [true, "job deadline is required!"]
-    }
+    appliedBy: [
+      {
+        name: String,
 
-},
-    {
-        timestamps: true
-    }
+        email: {
+          type: String,
+          validate: [validator.isEmail, "Provide a valid Email"],
+        },
+
+        id: {
+          type: ObjectId,
+          ref: "User",
+        },
+
+        applicationId: {
+          type: ObjectId,
+          ref: "Application",
+        },
+
+        date: {
+          type: Date,
+          default: new Date(),
+        },
+      },
+    ],
+
+    deadline: {
+      type: Date,
+      required: [true, "Please provide a deadline"],
+      default: date,
+    },
+
+    confirmationToken: String,
+    confirmationTokenExpires: Date,
+  },
+  {
+    timestamps: true,
+  }
 );
 
 

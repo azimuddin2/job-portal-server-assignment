@@ -1,46 +1,88 @@
-const { createJobService, getAllJobsService, getJobByIdService, updateJobByIdService } = require("../services/job.service");
+const { createJobServices, getAllJobsService, getJobByIdService, updateJobByIdService, applyJobService } = require("../services/job.service");
+const { findUserByEmail } = require("../services/user.service");
+
 
 
 exports.createJob = async (req, res, next) => {
     try {
-        const result = await createJobService(req.body);
-        res.status(200).json({
-            status: "success",
-            message: "Successfully created the job",
-            data: result
-        })
+        const job = await createJobServices(req.body);
 
+        if (!job) {
+            return res.status(500).json({
+                status: "fail",
+                message: "Couldn't create job",
+                error: error.message,
+            });
+        }
+
+        res.status(201).json({
+            status: "success",
+            message: "successfully created job",
+            data: job,
+        });
     } catch (error) {
-        console.log(error);
-        res.status(400).json({
+        res.status(500).json({
             status: "fail",
-            message: "Couldn't create the job",
-            error: error.message
-        })
+            message: "Couldn't create job",
+            error: error.message,
+        });
     }
 };
 
 
-exports.getAllJobs = async (req, res, next) => {
+exports.getAllJobs = async (req, res) => {
     try {
-        const jobs = await getAllJobsService(req.body);
+        let filters = { ...req.query };
+        const excludeFields = ["sort", "page", "limit"];
+        excludeFields.forEach((field) => delete filters[field]);
+
+        let filtersString = JSON.stringify(filters);
+        filtersString = filtersString.replace(
+            /\b(gt|gte|lt|lte)\b/g,
+            (match) => `$${match}`
+        );
+
+        filters = JSON.parse(filtersString);
+
+        const queries = {};
+
+        if (req.query.sort) {
+            // price,qunatity   -> 'price quantity'
+            const sortBy = req.query.sort.split(",").join(" ");
+            queries.sortBy = sortBy;
+        }
+
+        if (req.query.fields) {
+            const fields = req.query.fields.split(",").join(" ");
+            queries.fields = fields;
+        }
+
+        const jobs = await getAllJobsService(filters, queries);
+
+        if (!jobs) {
+            return res.status(500).json({
+                status: "fail",
+                message: "Couldn't get jobs",
+                error: error.message,
+            });
+        }
 
         res.status(200).json({
             status: "success",
-            message: "Successfully get all the jobs",
-            data: jobs
-        })
+            message: "get all jobs",
+            jobs,
+        });
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             status: "fail",
-            message: "Couldn't get the all jobs",
-            error: error.message
-        })
+            message: "Couldn't get jobs",
+            error: error.message,
+        });
     }
 };
 
 
-exports.getJobById = async (req, res, next) => {
+exports.getJobById = async (req, res) => {
     try {
         const { id } = req.params;
         const job = await getJobByIdService(id);
@@ -48,50 +90,94 @@ exports.getJobById = async (req, res, next) => {
         if (!job) {
             return res.status(400).json({
                 status: "fail",
-                error: "couldn't find the job with this id"
-            })
+                message: "Couldn't get job with this id",
+            });
         }
 
         res.status(200).json({
             status: "success",
-            message: "Successfully get the job",
-            data: job
-        })
-
+            job,
+        });
     } catch (error) {
         res.status(400).json({
             status: "fail",
-            message: "Couldn't get the job",
-            error: error.message
-        })
+            message: "Couldn't get job with this id",
+            error: error.message,
+        });
     }
 };
 
 
-exports.updateJobById = async (req, res, next) => {
+exports.updateJobById = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await updateJobByIdService(id, req.body);
+        const data = req.body;
+        const job = await updateJobByIdService(id, data);
 
-        if (!result.modifiedCount) {
+        if (!job) {
             return res.status(400).json({
                 status: "fail",
-                error: "Couldn't update the job with this id"
-            })
+                message: "Couldn't get job with this id",
+                error: error.message,
+            });
+        }
+
+        res.status(201).json({
+            status: "ok",
+            message: "successfully updated job",
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "Couldn't get job with this id",
+            error: error.message,
+        });
+    }
+};
+
+
+exports.applyJob = async (req, res) => {
+    try {
+        const { email } = req.user || {};
+        const { id } = req.params;
+        const resume = req.resumeName;
+
+        const user = await findUserByEmail(email);
+
+        const application = await applyJobService(user, req.body, resume, id);
+
+        if (!application) {
+            return res.status(500).json({
+                status: "fail",
+                message: "Couldn't get job with this id",
+            });
+        }
+
+        if (application === "Already Applied") {
+            return res.status(400).json({
+                status: "fail",
+                message: "Already Applied",
+            });
+        }
+
+        if (application === "deadline over") {
+            if (expired) {
+                return res.status(401).json({
+                    status: "fail",
+                    error: "deadline over",
+                });
+            }
         }
 
         res.status(200).json({
             status: "success",
-            message: "Successfully update the job ",
-            data: result
-
-        })
-
+            application,
+        });
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             status: "fail",
-            message: "Couldn't update the job",
-            error: error.message
-        })
+            message: "Couldn't get job with this id",
+            error: error.message,
+        });
     }
 };

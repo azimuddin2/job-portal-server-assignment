@@ -1,67 +1,58 @@
-const { getAllHiringManagerService, getHiringManagerByIdService, createHiringManagerService } = require("../services/hiringManager.service");
 
 
-exports.createHiringManager = async (req, res, next) => {
+exports.getAllJobsHiringManager = async (req, res) => {
     try {
-        const result = await createHiringManagerService(req.body);
-        res.status(200).json({
-            status: "success",
-            message: "Successfully created the hiring manager",
-            data: result
-        })
+        const email = req.user.email;
+        const jobs = await getAllJobsServices(email);
 
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({
-            status: "fail",
-            message: "Couldn't create the hiring manager",
-            error: error.message
-        })
-    }
-};
-
-exports.getAllHiringManager = async (req, res, next) => {
-    try {
-        const hiringManagers = await getAllHiringManagerService(req.body);
-
-        res.status(200).json({
-            status: "success",
-            message: "Successfully get all the hiring manager",
-            data: hiringManagers
-        })
-    } catch (error) {
-        res.status(400).json({
-            status: "fail",
-            message: "Couldn't get the all hiring manager",
-            error: error.message
-        })
-    }
-};
-
-
-exports.getHiringManagerById = async (req, res, next) => {
-    try {
-        const { id } = req.params;
-        const hiringManager = await getHiringManagerByIdService(id);
-
-        if (!hiringManager) {
-            return res.status(400).json({
+        if (!jobs) {
+            return res.status(500).json({
                 status: "fail",
-                error: "couldn't find the hiring manager with this id"
-            })
+                message: "Couldn't get job",
+                error: error.message,
+            });
         }
 
         res.status(200).json({
-            status: "success",
-            message: "Successfully get the hiring manager",
-            data: hiringManager
-        })
+            status: "ok",
+            message: "successfully get jobs",
+            jobs,
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: "fail",
+            message: "Couldn't get job",
+            error: error.message,
+        });
+    }
+};
 
+
+
+exports.getJobHiringManagerById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const email = req.user.email;
+        const job = await getJobByIdServices(email, id);
+
+        if (!job) {
+            return res.status(400).json({
+                status: "fail",
+                message: "Couldn't get job with this id",
+                error: error.message,
+            });
+        }
+
+        res.status(200).json({
+            status: "ok",
+            message: "successfully get job",
+            job,
+        });
     } catch (error) {
         res.status(400).json({
             status: "fail",
-            message: "Couldn't get the hiring manage",
-            error: error.message
-        })
+            message: "Couldn't get job with this id",
+            error: error.message,
+        });
     }
 };

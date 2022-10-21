@@ -1,52 +1,58 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
-const validator = require('validator');
+const validator = require("validator");
 
-const applicationSchema = mongoose.Schema({
-    name: {
+const applicationSchema = mongoose.Schema(
+  {
+    jobInfo: {
+      companyName: {
         type: String,
-        required: [true, "your name is required"],
+        required: [true, "Please provide a companyName"],
+      },
+
+      jobTitle: {
+        type: String,
+        required: [true, "Please provide a jobTitle"],
+      },
+
+      id: {
+        type: ObjectId,
+        ref: "Job",
+        required: [true, "Please provide a job id"],
+      },
     },
 
-    date: {
-        type: String,
-        required: [true, "date is required"]
+    candidateName: {
+      type: String,
+      required: [true, "Please provide a candidateName"],
     },
 
-    address: {
-        type: String,
-        required: [true, "your address is required"],
+    candidateEmail: {
+      type: String,
+      required: [true, "Please provide a email"],
+      validate: [validator.isEmail, "Provide a valid Email"],
     },
 
-    candidateId: [{
-        type: ObjectId,
-        required: true,
-        ref: "Candidate"
-    }],
+    candidateId: {
+      type: ObjectId,
+      required: [true, "Please provide a candidateId"],
+      ref: "User",
+    },
 
-    jobId: [{
-        type: ObjectId,
-        required: true,
-        ref: "Candidate"
-    }],
+    candidatePhoneNumber: {
+      type: String,
+      required: [true, "Please provide a candidatePhoneNumber"],
+    },
 
-    hiringManagerId: [{
-        type: ObjectId,
-        required: true,
-        ref: "HiringManager"
-    }],
-    
-    resume: {
-        type: String,
-        required: [true, "your resume is required"],
-        validate: [validator.isURL, "Please provide valid urls"]
-    }
+    candidateAddress: String,
 
-}, {
-    timestamps: true
-});
+    resume: String,
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const Application = mongoose.model("Application", applicationSchema);
-
 
 module.exports = Application;

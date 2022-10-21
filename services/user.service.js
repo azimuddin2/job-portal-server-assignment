@@ -11,3 +11,8 @@ exports.loginUserByEmail = async (email) => {
     const user = await User.findOne({ email: email });
     return user;
 }
+
+
+exports.findUserByEmail = async (email) => {
+    return await User.findOne({ email });
+};

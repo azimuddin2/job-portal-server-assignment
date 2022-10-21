@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const { ObjectId } = mongoose.Schema.Types;
+
 
 
 const userSchema = mongoose.Schema({
@@ -79,6 +81,21 @@ const userSchema = mongoose.Schema({
         enum: ['active', 'inactive', 'blocked'],
         default: 'active'
     },
+
+    appliedJobs: [
+        {
+            type: ObjectId,
+            ref: "Application",
+        },
+    ],
+
+    createdJobs: [
+        {
+            type: ObjectId,
+            ref: "Job",
+        },
+    ],
+
 
     passwordChangedAt: Date,
     passwordResetToken: String,

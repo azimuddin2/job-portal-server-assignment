@@ -8,7 +8,11 @@ router.route('/')
     .post(jobController.createJob)
     .get(jobController.getAllJobs)
 
-    
+
+router.route('/:id/apply')
+    .post(jobController.applyJob)
+
+
 router.route('/:id')
     .get(jobController.getJobById)
     .patch(jobController.updateJobById)

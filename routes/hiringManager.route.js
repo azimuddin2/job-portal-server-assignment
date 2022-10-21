@@ -5,13 +5,11 @@ const router = express.Router();
 
 
 router.route('/')
-    .post(hiringManagerController.createHiringManager)
-    .get(hiringManagerController.getAllHiringManager)
-
+    .get(hiringManagerController.getAllJobsHiringManager)
 
 
 router.route('/:id')
-    .get(hiringManagerController.getHiringManagerById)
+    .get(hiringManagerController.getJobHiringManagerById)
 
 
 
