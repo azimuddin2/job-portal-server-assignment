@@ -3,7 +3,7 @@ const Job = require("../models/Job");
 
 
 exports.getAllJobsHiringManagerServices = async (email) => {
-    return await Job.find({ "createdBy.email": email });
+    return await Job.find({  email });
 };
 
 exports.getJobHiringManagerByIdServices = async (email, id) => {

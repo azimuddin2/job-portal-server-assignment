@@ -1,9 +1,10 @@
+const { getAllJobsHiringManagerServices, getJobHiringManagerByIdServices } = require("../services/hiringManager.service");
 
 
 exports.getAllJobsHiringManager = async (req, res) => {
     try {
-        const email = req.user.email;
-        const jobs = await getAllJobsServices(email);
+        const email = req.user?.email;
+        const jobs = await getAllJobsHiringManagerServices(email);
 
         if (!jobs) {
             return res.status(500).json({
@@ -32,8 +33,8 @@ exports.getAllJobsHiringManager = async (req, res) => {
 exports.getJobHiringManagerById = async (req, res) => {
     try {
         const { id } = req.params;
-        const email = req.user.email;
-        const job = await getJobByIdServices(email, id);
+        const email = req.user?.email;
+        const job = await getJobHiringManagerByIdServices(email, id);
 
         if (!job) {
             return res.status(400).json({

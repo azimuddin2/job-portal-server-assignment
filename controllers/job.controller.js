@@ -1,4 +1,4 @@
-const { createJobServices, getAllJobsService, getJobByIdService, updateJobByIdService, applyJobService, createJobService } = require("../services/job.service");
+const { getAllJobsService, getJobByIdService, updateJobByIdService, applyJobService, createJobService } = require("../services/job.service");
 const { findUserByEmail } = require("../services/user.service");
 
 

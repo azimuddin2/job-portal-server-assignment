@@ -13,7 +13,7 @@ const jobSchema = mongoose.Schema({
       required: [true, "Please provide a Hiring Manager Email"],
     },
 
-    UserId: {
+    userId: {
       type: ObjectId,
       ref: "User",
       required: [true, "Please provide a Hiring Manager id"],
